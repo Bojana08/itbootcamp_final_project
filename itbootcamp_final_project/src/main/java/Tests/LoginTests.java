@@ -21,10 +21,10 @@ public class LoginTests extends BasicTest {
     public void checksInputTypes() {
 
         navPage.getLoginButton().click();
-        Assert.assertEquals(this.driver.findElement(By.id("email")).getAttribute("type"),
+        Assert.assertEquals(loginPage.getEmailInput().getAttribute("type"),
                 "email",
                 "[ERROR] - Input email is not type email.");
-        Assert.assertEquals(this.driver.findElement(By.id("password")).getAttribute("type"),
+        Assert.assertEquals(loginPage.getPasswordInput().getAttribute("type"),
                 "password",
                 "[ERROR] - Input password is not type password.");
     }
