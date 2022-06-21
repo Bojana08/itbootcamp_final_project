@@ -1,7 +1,5 @@
 package Tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -39,7 +37,7 @@ public class LoginTests extends BasicTest {
         loginPage.getPasswordInput().sendKeys(password);
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopUpMessageToBeVisible();
-        Assert.assertEquals(messagePopUpPage.getErrorTextElement().getText(),
+        Assert.assertEquals(messagePopUpPage.getMessageTextElement().getText(),
                 "User does not exists",
                 "[ERROR] - There is no 'User does not exists' in pop up error.");
         Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
@@ -56,7 +54,7 @@ public class LoginTests extends BasicTest {
         loginPage.getPasswordInput().sendKeys(password);
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopUpMessageToBeVisible();
-        Assert.assertEquals(messagePopUpPage.getErrorTextElement().getText(),
+        Assert.assertEquals(messagePopUpPage.getMessageTextElement().getText(),
                 "Wrong password",
                 "[ERROR] - There is no 'Wrong password' in pop up error.");
         Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),

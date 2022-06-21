@@ -45,7 +45,7 @@ public class SignupTests extends BasicTest{
         signupPage.getConfirmPasswordInput().sendKeys(confirmPassword);
         signupPage.getSignMeUpButton().click();
         messagePopUpPage.waitForPopUpMessageToBeVisible();
-        Assert.assertEquals(messagePopUpPage.getErrorTextElement().getText(),
+        Assert.assertEquals(messagePopUpPage.getMessageTextElement().getText(),
                 "E-mail already exists",
                 "[ERROR] - There is no 'E-mail already exists' in pop up error.");
 

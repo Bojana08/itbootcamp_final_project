@@ -5,10 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
-import java.util.List;
 
 public class MessagePopUpPage {
 
@@ -24,10 +22,21 @@ public class MessagePopUpPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-snack__content")));
     }
 
-    public WebElement getErrorTextElement() {
+    public void waitForPopUpMessageSavedSuccessfullyToBeVisible() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+    }
+
+    public WebElement getMessageTextElement() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-snack__content")));
         return this.driver.findElement(By.tagName("li"));
+    }
+
+    public WebElement getMessageSavedSuccessfullyTextElement() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+        return this.driver.findElement(By.className("success"));
     }
 
     public WebElement getCloseButtonFromPopUpMesssage() {
@@ -36,6 +45,8 @@ public class MessagePopUpPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-btn--flat")));
         return this.driver.findElement(By.className("v-btn--flat"));
     }
+
+
 
 
     public void waitForVerifyYourAccountToBeVisible() {

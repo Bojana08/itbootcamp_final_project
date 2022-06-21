@@ -30,5 +30,9 @@ public class CitiesPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
     }
 
+    public WebElement getSaveButton() {
+        return this.driver.findElement(By.className("btnSave"));
+    }
+
 
 }

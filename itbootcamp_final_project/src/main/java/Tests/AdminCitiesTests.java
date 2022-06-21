@@ -3,7 +3,7 @@ package Tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AdminCitiesTests extends BasicTest{
+public class AdminCitiesTests extends BasicTest {
 
     @Test(priority = 1)
     public void visitsTheAdminCitiesPageAndListCities() {
@@ -32,5 +32,20 @@ public class AdminCitiesTests extends BasicTest{
                 "[ERROR] - Input name is not type text.");
     }
 
+    @Test(priority = 3)
+    public void createNewCity() {
+        String city = "Bojana R";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getNewItemButton().click();
+        citiesPage.waitForEditOrCreateDialogToBeVisible();
+        citiesPage.getNameInput().sendKeys(city);
+        citiesPage.getSaveButton().click();
+        messagePopUpPage.waitForPopUpMessageSavedSuccessfullyToBeVisible();
+        Assert.assertTrue(
+                messagePopUpPage.getMessageSavedSuccessfullyTextElement().getText().contains("Saved successfully"),
+                "[ERROR] - Pop Up Message does not contain 'Saved successfully'");
+    }
 
 }
