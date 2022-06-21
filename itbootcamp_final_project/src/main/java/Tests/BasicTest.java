@@ -2,6 +2,7 @@ package Tests;
 
 import Pages.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -19,6 +20,7 @@ public class BasicTest {
     protected CitiesPage citiesPage;
     protected SignupPage signupPage;
     protected MessagePopUpPage messagePopUpPage;
+    protected WebDriverWait wait;
 
     @BeforeClass
     public void beforeClass() {
@@ -26,8 +28,9 @@ public class BasicTest {
                 "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        loginPage = new LoginPage();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        loginPage = new LoginPage(driver);
         navPage = new NavPage(driver);
         citiesPage = new CitiesPage();
         signupPage = new SignupPage();
