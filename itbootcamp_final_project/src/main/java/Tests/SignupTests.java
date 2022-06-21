@@ -28,4 +28,26 @@ public class SignupTests extends BasicTest{
                 "[ERROR] - Input Confirm password is not type password.");
     }
 
+    @Test(priority = 3)
+    public void displaysErrorsWhenUserAlreadyExists() {
+        String name = "Another User";
+        String email = "admin@admin.com";
+        String password = "12345";
+        String confirmPassword = "12345";
+
+        navPage.getSignUpButton().click();
+        Assert.assertTrue(this.driver.getCurrentUrl().contains("/signup"),
+                "[ERROR] - Page URL does not contain '/signup'.");
+        signupPage.getNameInput().sendKeys(name);
+        signupPage.getEmailInput().sendKeys(email);
+        signupPage.getPasswordInput().sendKeys(password);
+        signupPage.getConfirmPasswordInput().sendKeys(confirmPassword);
+        signupPage.getSignMeUpButton().click();
+        messagePopUpPage.waitForPopUpMessageToBeVisible();
+        Assert.assertEquals(messagePopUpPage.waitForPopUpMessageToBeVisible().getText(),
+                "E-mail already exists",
+                "[ERROR] - There is no 'E-mail already exists' in pop up error.");
+
+    }
+
 }
