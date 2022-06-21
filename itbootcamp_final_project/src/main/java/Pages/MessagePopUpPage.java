@@ -19,12 +19,40 @@ public class MessagePopUpPage {
         this.driver = driver;
     }
 
-    public WebElement waitForPopUpMessageToBeVisible() {
+    public void waitForPopUpMessageToBeVisible() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-snack__content")));
+    }
+
+    public WebElement getErrorTextElement() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-snack__content")));
+        return this.driver.findElement(By.tagName("li"));
+    }
+
+    public WebElement getCloseButtonFromPopUpMesssage() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-snack__content")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-btn--flat")));
-        return this.driver.findElement(By.tagName("li"));
+        return this.driver.findElement(By.className("v-btn--flat"));
     }
+
+
+    public void waitForVerifyYourAccountToBeVisible() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
+    }
+
+    public WebElement getTitleFromVerifyYourAccountDialog() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-card__title")));
+        return this.driver.findElement(By.className("v-card__title"));
+    }
+
+    public WebElement getCloseButton() {
+        return this.driver.findElement(By.className("btnClose"));
+    }
+
 
 
 }
