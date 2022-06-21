@@ -12,13 +12,13 @@ import java.time.Duration;
 
 public class BasicTest {
 
-    private WebDriver driver;
-    private String baseUrl = "https://vue-demo.daniel-avellaneda.com";
-    private LoginPage loginPage;
-    private NavPage navPage;
-    private CitiesPage citiesPage;
-    private SignupPage signupPage;
-    private MessagePopUpPage messagePopUpPage;
+    protected WebDriver driver;
+    protected String baseUrl = "https://vue-demo.daniel-avellaneda.com";
+    protected LoginPage loginPage;
+    protected NavPage navPage;
+    protected CitiesPage citiesPage;
+    protected SignupPage signupPage;
+    protected MessagePopUpPage messagePopUpPage;
 
     @BeforeClass
     public void beforeClass() {
@@ -28,7 +28,7 @@ public class BasicTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         loginPage = new LoginPage();
-        navPage = new NavPage();
+        navPage = new NavPage(driver);
         citiesPage = new CitiesPage();
         signupPage = new SignupPage();
         messagePopUpPage = new MessagePopUpPage();
