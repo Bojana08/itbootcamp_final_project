@@ -34,7 +34,7 @@ public class BasicTest {
         navPage = new NavPage(driver);
         citiesPage = new CitiesPage();
         signupPage = new SignupPage();
-        messagePopUpPage = new MessagePopUpPage();
+        messagePopUpPage = new MessagePopUpPage(driver);
     }
 
     @BeforeMethod

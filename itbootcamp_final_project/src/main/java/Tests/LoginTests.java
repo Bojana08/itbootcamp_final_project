@@ -30,7 +30,7 @@ public class LoginTests extends BasicTest {
     }
 
     @Test(priority = 3)
-    public void displaysErrorsWhenUserDoesNotExist() throws InterruptedException {
+    public void displaysErrorsWhenUserDoesNotExist() {
         String email = "non-existing-user@gmal.com";
         String password = "password123";
 
@@ -38,11 +38,30 @@ public class LoginTests extends BasicTest {
         loginPage.getEmailInput().sendKeys(email);
         loginPage.getPasswordInput().sendKeys(password);
         loginPage.getLoginButton().click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-snack__content")));
-        Assert.assertEquals(this.driver.findElement(By.tagName("li")).getText(),
+        messagePopUpPage.waitForPopUpMessageToBeVisible();
+        Assert.assertEquals(messagePopUpPage.waitForPopUpMessageToBeVisible().getText(),
                 "User does not exists",
                 "[ERROR] - There is no 'User does not exists' in pop up error.");
         Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
                 "[ERROR] - Page URL does not contain '/login'.");
     }
+
+    @Test(priority = 4)
+    public void displaysErrorsWhenPasswordIsWrong() {
+        String email = "admin@admin.com";
+        String password = "password123";
+
+        navPage.getLoginButton().click();
+        loginPage.getEmailInput().sendKeys(email);
+        loginPage.getPasswordInput().sendKeys(password);
+        loginPage.getLoginButton().click();
+        messagePopUpPage.waitForPopUpMessageToBeVisible();
+        Assert.assertEquals(messagePopUpPage.waitForPopUpMessageToBeVisible().getText(),
+                "Wrong password",
+                "[ERROR] - There is no 'Wrong password' in pop up error.");
+        Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
+                "[ERROR] - Page URL does not contain '/login'.");
+    }
+
+
 }
