@@ -27,4 +27,8 @@ public class NavPage {
         return this.driver.findElement(By.className("btnLogout"));
     }
 
+    public WebElement getSignUpButton() {
+        return this.driver.findElement(By.linkText("SIGN UP"));
+    }
+
 }
