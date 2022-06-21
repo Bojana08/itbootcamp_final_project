@@ -32,7 +32,7 @@ public class BasicTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         loginPage = new LoginPage(driver);
         navPage = new NavPage(driver);
-        citiesPage = new CitiesPage();
+        citiesPage = new CitiesPage(driver);
         signupPage = new SignupPage(driver);
         messagePopUpPage = new MessagePopUpPage(driver);
     }

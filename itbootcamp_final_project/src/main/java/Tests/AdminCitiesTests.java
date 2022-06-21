@@ -20,4 +20,17 @@ public class AdminCitiesTests extends BasicTest{
                 "[ERROR] - Page URL does not contain '/admin/cities'.");
     }
 
+    @Test(priority = 2)
+    public void checksInputTypesForCreateOrEditNewCity() {
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getNewItemButton().click();
+        citiesPage.waitForEditOrCreateDialogToBeVisible();
+        Assert.assertEquals(citiesPage.getNameInput().getAttribute("type"),
+                "text",
+                "[ERROR] - Input name is not type text.");
+    }
+
+
 }
