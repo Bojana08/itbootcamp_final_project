@@ -75,5 +75,11 @@ public class LoginTests extends BasicTest {
         wait.until(ExpectedConditions.urlContains("/home"));
     }
 
+    @Test(priority = 6)
+    public void logout() {
+         wait.until(ExpectedConditions.visibilityOf(navPage.getLogoutButton()));
+         navPage.getLogoutButton().click();
+    }
+
 
 }
