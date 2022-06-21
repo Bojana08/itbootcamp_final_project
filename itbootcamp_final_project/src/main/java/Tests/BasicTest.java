@@ -33,7 +33,7 @@ public class BasicTest {
         loginPage = new LoginPage(driver);
         navPage = new NavPage(driver);
         citiesPage = new CitiesPage();
-        signupPage = new SignupPage();
+        signupPage = new SignupPage(driver);
         messagePopUpPage = new MessagePopUpPage(driver);
     }
 
