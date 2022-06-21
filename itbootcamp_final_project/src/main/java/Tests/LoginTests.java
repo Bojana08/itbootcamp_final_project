@@ -63,5 +63,17 @@ public class LoginTests extends BasicTest {
                 "[ERROR] - Page URL does not contain '/login'.");
     }
 
+    @Test(priority = 5)
+    public void login() {
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        navPage.getLoginButton().click();
+        loginPage.getEmailInput().sendKeys(email);
+        loginPage.getPasswordInput().sendKeys(password);
+        loginPage.getLoginButton().click();
+        wait.until(ExpectedConditions.urlContains("/home"));
+    }
+
 
 }
