@@ -65,7 +65,7 @@ public class SignupTests extends BasicTest{
         signupPage.getConfirmPasswordInput().sendKeys(confirmPassword);
         signupPage.getSignMeUpButton().click();
         wait.until(ExpectedConditions.urlContains("/home"));
-        messagePopUpPage.waitForVerifyYourAccountToBeVisible();
+        messagePopUpPage.waitForDialogueToBeVisible();
         Assert.assertEquals(messagePopUpPage.getTitleFromVerifyYourAccountDialog().getText(),
                 "IMPORTANT: Verify your account",
                 "[ERROR] - There is no 'IMPORTANT: Verify your account' in pop up error.");

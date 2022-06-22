@@ -22,7 +22,7 @@ public class MessagePopUpPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-snack__content")));
     }
 
-    public void waitForPopUpMessageSavedSuccessfullyToBeVisible() {
+    public void waitForPopUpMessageSuccessfullyToBeVisible() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
     }
@@ -33,7 +33,7 @@ public class MessagePopUpPage {
         return this.driver.findElement(By.tagName("li"));
     }
 
-    public WebElement getMessageSavedSuccessfullyTextElement() {
+    public WebElement getMessageSuccessfullyTextElement() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
         return this.driver.findElement(By.className("success"));
@@ -46,10 +46,7 @@ public class MessagePopUpPage {
         return this.driver.findElement(By.className("v-btn--flat"));
     }
 
-
-
-
-    public void waitForVerifyYourAccountToBeVisible() {
+    public void waitForDialogueToBeVisible() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
     }
@@ -63,7 +60,5 @@ public class MessagePopUpPage {
     public WebElement getCloseButton() {
         return this.driver.findElement(By.className("btnClose"));
     }
-
-
 
 }

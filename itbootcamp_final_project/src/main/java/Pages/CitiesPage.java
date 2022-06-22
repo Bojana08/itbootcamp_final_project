@@ -25,7 +25,7 @@ public class CitiesPage {
         return this.driver.findElement(By.id("name"));
     }
 
-    public void waitForEditOrCreateDialogToBeVisible() {
+    public void waitForEditOrCreateDialogueToBeVisible() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
     }
@@ -52,4 +52,13 @@ public class CitiesPage {
                 .findElement(By.xpath(
                         "//tbody/tr["+rowIndex +"]/td["+ columnIndex +"]"));
     }
+
+    public WebElement getDeleteButtonFromRow(int rowIndex) {
+        return this.driver.findElements(By.id("delete")).get(rowIndex - 1);
+    }
+
+    public WebElement getDeleteButtonFromDialogue() {
+        return this.driver.findElement(By.xpath("//div[contains(@class,'v-card__actions')]/button[2]"));
+    }
+
 }

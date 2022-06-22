@@ -1,6 +1,5 @@
 package Tests;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,7 +30,7 @@ public class AdminCitiesTests extends BasicTest {
         navPage.getAdminButton().click();
         navPage.getCitiesButton().click();
         citiesPage.getNewItemButton().click();
-        citiesPage.waitForEditOrCreateDialogToBeVisible();
+        citiesPage.waitForEditOrCreateDialogueToBeVisible();
         Assert.assertEquals(citiesPage.getNameInput().getAttribute("type"),
                 "text",
                 "[ERROR] - Input name is not type text.");
@@ -44,18 +43,18 @@ public class AdminCitiesTests extends BasicTest {
         navPage.getAdminButton().click();
         navPage.getCitiesButton().click();
         citiesPage.getNewItemButton().click();
-        citiesPage.waitForEditOrCreateDialogToBeVisible();
+        citiesPage.waitForEditOrCreateDialogueToBeVisible();
         citiesPage.getNameInput().sendKeys(city);
         citiesPage.getSaveButton().click();
-        messagePopUpPage.waitForPopUpMessageSavedSuccessfullyToBeVisible();
+        messagePopUpPage.waitForPopUpMessageSuccessfullyToBeVisible();
         Assert.assertTrue(
-                messagePopUpPage.getMessageSavedSuccessfullyTextElement().getText().contains("Saved successfully"),
+                messagePopUpPage.getMessageSuccessfullyTextElement().getText().contains("Saved successfully"),
                 "[ERROR] - Pop Up Message does not contain 'Saved successfully'");
     }
 
     @Test(priority = 4)
     public void editCity() {
-        String oldCityName = "Bojana R's city";
+        String oldCityName = "Bojana R";
         String newCityName = "Bojana R's city Edited";
 
         navPage.getAdminButton().click();
@@ -73,9 +72,9 @@ public class AdminCitiesTests extends BasicTest {
                 .perform();
         wait.until(ExpectedConditions.elementToBeClickable(citiesPage.getSaveButton()));
         citiesPage.getSaveButton().click();
-        messagePopUpPage.waitForPopUpMessageSavedSuccessfullyToBeVisible();
+        messagePopUpPage.waitForPopUpMessageSuccessfullyToBeVisible();
         Assert.assertTrue(
-                messagePopUpPage.getMessageSavedSuccessfullyTextElement().getText().contains("Saved successfully"),
+                messagePopUpPage.getMessageSuccessfullyTextElement().getText().contains("Saved successfully"),
                 "[ERROR] - Pop Up Message does not contain 'Saved successfully'");
     }
 
@@ -87,13 +86,29 @@ public class AdminCitiesTests extends BasicTest {
         navPage.getCitiesButton().click();
         wait.until(ExpectedConditions.elementToBeClickable(citiesPage.getSearchInput()));
         citiesPage.getSearchInput().sendKeys(cityName);
-
         citiesPage.waitForRowsToAppear(1);
         Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(),
                 cityName,
                 "[ERROR] - City that you searched for does not exist.");
     }
 
-    
+    @Test(priority = 6)
+    public void deleteCity() {
+        String cityName = "Bojana R's city Edited";
 
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getSearchInput().sendKeys(cityName);
+        citiesPage.waitForRowsToAppear(1);
+        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(),
+                cityName,
+                "[ERROR] - City that you searched for does not exist.");
+        citiesPage.getDeleteButtonFromRow(1).click();
+        messagePopUpPage.waitForDialogueToBeVisible();
+        citiesPage.getDeleteButtonFromDialogue().click();
+        messagePopUpPage.waitForPopUpMessageSuccessfullyToBeVisible();
+        Assert.assertTrue(
+                messagePopUpPage.getMessageSuccessfullyTextElement().getText().contains("Deleted successfully"),
+                "[ERROR] - Pop Up Message does not contain 'Deleted successfully'");
+    }
 }
