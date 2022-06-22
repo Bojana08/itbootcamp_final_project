@@ -34,5 +34,16 @@ public class CitiesPage {
         return this.driver.findElement(By.className("btnSave"));
     }
 
+    public WebElement getSearchInput() {
+        return this.driver.findElement(By.id("search"));
+    }
 
+    public void waitForRowsToAppear(int rowNum) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.tagName("tr"), rowNum + 1));
+    }
+
+    public WebElement getEditButton(int rowIndex) {
+        return this.driver.findElements(By.id("edit")).get(rowIndex - 1);
+    }
 }

@@ -34,7 +34,7 @@ public class MessagePopUpPage {
     }
 
     public WebElement getMessageSavedSuccessfullyTextElement() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
         return this.driver.findElement(By.className("success"));
     }
