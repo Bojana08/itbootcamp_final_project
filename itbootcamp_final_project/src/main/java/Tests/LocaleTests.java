@@ -14,4 +14,13 @@ public class LocaleTests extends BasicTest{
                 "[ERROR] - Page Header does not contain 'Página de aterrizaje'.");
     }
 
+    @Test(priority = 2)
+    public void setLocaleToEN() {
+
+        navPage.getLanguageButton().click();
+        navPage.getButtonEN().click();
+        Assert.assertTrue(navPage.getHeader().getText().contains("Landing"),
+                "[ERROR] - Page Header does not contain 'Landing'.");
+    }
+
 }
