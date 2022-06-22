@@ -39,4 +39,8 @@ public class NavPage {
         return this.driver.findElement(By.linkText("Cities"));
     }
 
+    public void getHomeLink() {
+        this.driver.get(driver.getCurrentUrl()+"home");
+    }
+
 }
