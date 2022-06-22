@@ -66,4 +66,12 @@ public class NavPage {
         return this.driver.findElement(By.tagName("h1"));
     }
 
+    public WebElement getAboutButton() {
+        return this.driver.findElement(By.className("btnAbout"));
+    }
+
+    public WebElement getUsersButton() {
+        return this.driver.findElement(By.linkText("Users"));
+    }
+
 }
