@@ -23,4 +23,13 @@ public class LocaleTests extends BasicTest{
                 "[ERROR] - Page Header does not contain 'Landing'.");
     }
 
+    @Test(priority = 3)
+    public void setLocaleToCN() {
+
+        navPage.getLanguageButton().click();
+        navPage.getButtonCN().click();
+        Assert.assertTrue(navPage.getHeader().getText().contains("首页"),
+                "[ERROR] - Page Header does not contain '首页'.");
+    }
+
 }
