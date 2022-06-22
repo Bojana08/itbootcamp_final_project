@@ -14,9 +14,12 @@ public class NavPage {
         this.driver = driver;
     }
 
+    public WebElement getLanguageButton() {
+        return this.driver.findElement(By.className("btnLocaleActivation"));
+    }
+
     public WebElement getButtonEN() {
-        this.driver.findElement(By.className("btnLocaleActivation")).click();
-        return this.driver.findElement(By.id("list-item-73"));
+        return this.driver.findElement(By.className("btnEN"));
     }
 
     public WebElement getLoginButton() {
@@ -45,6 +48,22 @@ public class NavPage {
 
     public void getMyProfileLink() {
         this.driver.get(driver.getCurrentUrl()+"profile");
+    }
+
+    public WebElement getButtonES() {
+        return this.driver.findElement(By.className("btnES"));
+    }
+
+    public WebElement getButtonFR() {
+        return this.driver.findElement(By.className("btnFR"));
+    }
+
+    public WebElement getButtonCN() {
+        return this.driver.findElement(By.className("btnCN"));
+    }
+
+    public WebElement getHeader() {
+        return this.driver.findElement(By.tagName("h1"));
     }
 
 }
