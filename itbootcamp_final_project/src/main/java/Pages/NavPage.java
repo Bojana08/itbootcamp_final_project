@@ -43,4 +43,8 @@ public class NavPage {
         this.driver.get(driver.getCurrentUrl()+"home");
     }
 
+    public void getMyProfileLink() {
+        this.driver.get(driver.getCurrentUrl()+"profile");
+    }
+
 }
