@@ -46,4 +46,10 @@ public class CitiesPage {
     public WebElement getEditButton(int rowIndex) {
         return this.driver.findElements(By.id("edit")).get(rowIndex - 1);
     }
+
+    public WebElement getTableCell(int rowIndex, int columnIndex) {
+        return driver
+                .findElement(By.xpath(
+                        "//tbody/tr["+rowIndex +"]/td["+ columnIndex +"]"));
+    }
 }

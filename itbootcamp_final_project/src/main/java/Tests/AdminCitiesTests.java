@@ -1,5 +1,6 @@
 package Tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,10 +63,12 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getSearchInput().sendKeys(oldCityName);
         citiesPage.waitForRowsToAppear(1);
         citiesPage.getEditButton(1).click();
-        new Actions(driver)
+        Actions actions = new Actions(driver);
+        actions
+                .click(citiesPage.getNameInput())
                 .keyDown(Keys.CONTROL)
                 .sendKeys("a")
-                .click()
+                .keyUp(Keys.CONTROL)
                 .sendKeys(newCityName)
                 .perform();
         wait.until(ExpectedConditions.elementToBeClickable(citiesPage.getSaveButton()));
@@ -75,5 +78,22 @@ public class AdminCitiesTests extends BasicTest {
                 messagePopUpPage.getMessageSavedSuccessfullyTextElement().getText().contains("Saved successfully"),
                 "[ERROR] - Pop Up Message does not contain 'Saved successfully'");
     }
+
+    @Test(priority = 5)
+    public void searchCity() {
+        String cityName = "Bojana R's city Edited";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        wait.until(ExpectedConditions.elementToBeClickable(citiesPage.getSearchInput()));
+        citiesPage.getSearchInput().sendKeys(cityName);
+
+        citiesPage.waitForRowsToAppear(1);
+        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(),
+                cityName,
+                "[ERROR] - City that you searched for does not exist.");
+    }
+
+    
 
 }
