@@ -32,4 +32,13 @@ public class LocaleTests extends BasicTest{
                 "[ERROR] - Page Header does not contain '首页'.");
     }
 
+    @Test(priority = 4)
+    public void setLocaleToFR() {
+
+        navPage.getLanguageButton().click();
+        navPage.getButtonFR().click();
+        Assert.assertTrue(navPage.getHeader().getText().contains("Page d'atterrissage"),
+                "[ERROR] - Page Header does not contain 'Page d'atterrissage'.");
+    }
+
 }
