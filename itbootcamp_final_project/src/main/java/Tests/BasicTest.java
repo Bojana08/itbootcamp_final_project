@@ -12,7 +12,9 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class BasicTest {
 
@@ -24,8 +26,6 @@ public class BasicTest {
     protected SignupPage signupPage;
     protected MessagePopUpPage messagePopUpPage;
     protected WebDriverWait wait;
-    private File getSreenShotMethodImageFile =
-            new File ("src/main/resources/image.png");
 
     @BeforeClass
     public void beforeClass() {
@@ -54,9 +54,12 @@ public class BasicTest {
 
     @AfterMethod
     public void createScreenShotForFailedTest(ITestResult result) throws IOException {
+        String timestamp = new SimpleDateFormat(
+                "hh_mm_ss_dd_MM_yyyy").format(new Date());
         if (result.getStatus() == ITestResult.FAILURE) {
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, getSreenShotMethodImageFile);
+            FileUtils.copyFile(scrFile, new File(
+                    "src/main/java/Screenshots/TestFailure_" + timestamp + ".png"));
         }
     }
 
